@@ -70,10 +70,10 @@ namespace UserManagement.WebServices
             resultContract.StatusCode = responseTuple.Item4;
             return resultContract;
         }
-
-        public async Task<DefaultResponseContract> SaveUserData(SaveUserDataRequestContract reqContract)
+        public async Task<DefaultResponseContract> SaveUserData(SaveUserDataRequestContract reqContract, bool dummy)
         {
-            string endpoint = $"save_user_data.php?" +
+            string endpoint = dummy ? $"registerDummyMobile.php?" : $"save_user_data.php?";
+            endpoint = $"{endpoint}" +
                 $"action={reqContract.Action}&" +
                 $"firstname={reqContract.FirstName}&" +
                 $"lastname={reqContract.LastName}&" +
@@ -163,7 +163,11 @@ namespace UserManagement.WebServices
 
         public async Task<DefaultResponseContract> CheckIDRArchiveUser(ManageUserRequestContract reqContract)
         {
-            string endpoint = $"manage_user.php?action=update_idr_archive&id={reqContract.Id}";
+            string endpoint = $"manage_user.php?" +
+                $"action=update_idr_archive&" +
+                $"master_store_id={reqContract.MasterStoreId}&" +
+                $"super_master_id={reqContract.SuperMasterId}&" +
+                $"id={reqContract.Id}";
 
             var responseTuple = await GetAsync<DefaultResponseContract>(endpoint, Config.CurrentUser.Token);
             responseTuple = await IsUserAuthorized(endpoint, responseTuple, RequestType.Get);
@@ -174,7 +178,11 @@ namespace UserManagement.WebServices
 
         public async Task<DefaultResponseContract> CheckIDRStoreUser(ManageUserRequestContract reqContract)
         {
-            string endpoint = $"manage_user.php?action=update_idr&id={reqContract.Id}";
+            string endpoint = $"manage_user.php?" +
+                $"action=update_idr&" +
+                $"master_store_id={reqContract.MasterStoreId}&" +
+                $"super_master_id={reqContract.SuperMasterId}&" +
+                $"id={reqContract.Id}";
 
             var responseTuple = await GetAsync<DefaultResponseContract>(endpoint, Config.CurrentUser.Token);
             responseTuple = await IsUserAuthorized(endpoint, responseTuple, RequestType.Get);

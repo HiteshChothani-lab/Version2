@@ -101,6 +101,15 @@ namespace UserManagement.UI.ViewModels
                     await GetData();
                 }
             });
+            _eventAggregator.GetEvent<RegisterStoreUserSubmitEvent>().Subscribe(async (user) =>
+            {
+                _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(false);
+                ResetFields();
+                if (user != null)
+                {
+                    await GetData();
+                }
+            });
 
             this.NonMobileUserCommand = new DelegateCommand(() => ExecuteNonMobileUserCommand());
             this.AddUserCommand = new DelegateCommand(async () => await ExecuteAddUserCommand());
@@ -308,7 +317,7 @@ namespace UserManagement.UI.ViewModels
 
             if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC && !this.IsCheckedButtonD)
             {
-                MessageBox.Show("You must make a selection for Auto or Health Science or Nature or Other or all.", "Required.");
+                MessageBox.Show("You need to select a reason for visit before an add can be made.", "Required.");
                 return;
             }
 
@@ -371,7 +380,7 @@ namespace UserManagement.UI.ViewModels
             }
 
             SetLoaderVisibility("Adding user...");
-            var result = await _windowsManager.SaveUserData(reqEntity);
+            var result = await _windowsManager.SaveUserData(reqEntity, false);
             if (result.StatusCode == (int)GenericStatusValue.Success)
             {
                 SetLoaderVisibility();
@@ -383,7 +392,22 @@ namespace UserManagement.UI.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show(result.Messagee, "Unsuccessful");
+                    if ((result.Messagee == "Mobile no doesnot exits!"))
+                    {
+                        // ask to Register
+                        var message = $"Mobile Number: {MobileNumber} not found. {Environment.NewLine} Do you want to register a new user?";
+                        const string title = "Mobile Number Not Found";
+
+                        var action = MessageBox.Show(message, title, MessageBoxButton.OKCancel, MessageBoxImage.Question);
+                        if (action == MessageBoxResult.OK)
+                        {
+                            ExecuteRegisterUserCommand(reqEntity);
+                        }
+                        else
+                            MessageBox.Show(result.Messagee, "Unsuccessful");
+                    }
+                    else
+                        MessageBox.Show(result.Messagee, "Unsuccessful");
                 }
             }
             else if (result.StatusCode == (int)GenericStatusValue.NoInternetConnection)
@@ -404,6 +428,18 @@ namespace UserManagement.UI.ViewModels
 
             SetLoaderVisibility();
             this.CanTapAddCommand = true;
+        }
+
+        private void ExecuteRegisterUserCommand(SaveUserDataRequestEntity user)
+        {
+            _eventAggregator.GetEvent<PopupVisibilityEvent>().Publish(true);
+            var parameters = new NavigationParameters
+            {
+                { NavigationConstants.SelectedStoreUser, user }
+            };
+
+            RegionManager.RequestNavigate
+                ("PopupRegion", ViewNames.RegisterUserPopupPage, parameters);
         }
 
         private async Task ExecuteDeleteStoreUserCommand(StoreUserEntity parameter)
@@ -718,7 +754,9 @@ namespace UserManagement.UI.ViewModels
 
                 var idrResult = await _windowsManager.CheckIDRStoreUser(new ManageUserRequestEntity()
                 {
-                    Id = parameter.Id
+                    Id = parameter.Id,
+                    MasterStoreId = parameter.MasterStoreId,
+                    SuperMasterId = Config.MasterStore.UserId
                 });
 
                 if (idrResult.StatusCode == (int)GenericStatusValue.Success)
@@ -756,7 +794,9 @@ namespace UserManagement.UI.ViewModels
 
                 var idrResult = await _windowsManager.CheckIDRArchiveUser(new ManageUserRequestEntity()
                 {
-                    Id = parameter.Id
+                    Id = parameter.Id,
+                    MasterStoreId = parameter.MasterStoreId,
+                    SuperMasterId = Config.MasterStore.UserId
                 });
 
                 if (idrResult.StatusCode == (int)GenericStatusValue.Success)
