@@ -60,8 +60,9 @@
                                         Source="/UserManagement.UI;component/Assets/wheel.png" />
                         <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="AUTO"/>
+                                               Margin="15,0,0,0"
+                                               FontSize="15"
+                                               Text="DRIVER'S LICENCE"/>
                     </Grid>
                 </ToggleButton.Content>
             </ToggleButton>
@@ -82,8 +83,8 @@
                         <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
                                                FontSize="18"
-                                               Margin="32,0,0,0"
-                                               Text="HEALTH SCIENCE"/>
+                                               Margin="20,0,0,0"
+                                               Text="HEALTH CARE"/>
                     </Grid>
                 </ToggleButton.Content>
             </ToggleButton>
@@ -101,10 +102,11 @@
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
                                         Source="/UserManagement.UI;component/Assets/nature.png" />
-                        <TextBlock VerticalAlignment="Bottom"
+                        <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="NATURE"/>
+                                               Margin="35,0,0,0"
+                                               FontSize="13"
+                                               Text="VEHICLE REGISTRATION"/>
                     </Grid>
                 </ToggleButton.Content>
             </ToggleButton>

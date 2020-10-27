@@ -361,12 +361,12 @@ namespace UserManagement.UI.ViewModels
 
             if (this.IsCheckedButtonA)
             {
-                reqEntity.Button1 = "Auto";
+                reqEntity.Button1 = "Drivers Licence";
             }
 
             if (this.IsCheckedButtonB)
             {
-                reqEntity.Button2 = "Health Science";
+                reqEntity.Button2 = "Health Care";
             }
 
             if (this.IsCheckedButtonD)
@@ -376,7 +376,7 @@ namespace UserManagement.UI.ViewModels
 
             if (this.IsCheckedButtonC)
             {
-                reqEntity.Button4 = "Nature";
+                reqEntity.Button4 = "Vehicle Registration";
             }
 
             SetLoaderVisibility("Adding user...");

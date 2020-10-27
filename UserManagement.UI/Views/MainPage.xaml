@@ -112,8 +112,9 @@
                                         Source="/UserManagement.UI;component/Assets/wheel.png" />
                                 <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="AUTO"/>
+                                           Margin="15,0,0,0"
+                                               FontSize="15"
+                                               Text="DRIVER'S LICENCE"/>
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
@@ -131,11 +132,11 @@
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
                                         Source="/UserManagement.UI;component/Assets/science.png" />
-                                    <TextBlock VerticalAlignment="Center"
+                                <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
                                                FontSize="18"
-                                               Margin="32,0,0,0"
-                                               Text="HEALTH SCIENCE"/>
+                                               Margin="20,0,0,0"
+                                               Text="HEALTH CARE"/>
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
@@ -153,14 +154,15 @@
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
                                         Source="/UserManagement.UI;component/Assets/nature.png" />
-                                <TextBlock VerticalAlignment="Bottom"
+                                <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
-                                               FontSize="18"
-                                               Text="NATURE"/>
+                                           Margin="35,0,0,0"
+                                               FontSize="13"
+                                               Text="VEHICLE REGISTRATION"/>
                             </Grid>
                         </ToggleButton.Content>
                     </ToggleButton>
-                    
+
                     <ToggleButton Grid.Row="1" Grid.Column="1"  Margin="5,5"
                                       IsChecked="{Binding IsCheckedButtonD}"
                                       HorizontalContentAlignment="Stretch"
@@ -263,7 +265,7 @@
                                                        Source="{Binding Column1DisplayImageCenterBottom}"
                                                        Stretch="Uniform" />
                                                 </StackPanel>
-                                                
+
                                                 <Image Width="40"
                                                        Margin="0"
                                                        HorizontalAlignment="Right"

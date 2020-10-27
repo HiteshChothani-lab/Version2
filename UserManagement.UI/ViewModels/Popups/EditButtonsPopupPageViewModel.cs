@@ -134,7 +134,7 @@ namespace UserManagement.UI.ViewModels
         {
             if (!this.IsCheckedButtonA && !this.IsCheckedButtonB && !this.IsCheckedButtonC && !this.IsCheckedButtonD)
             {
-                MessageBox.Show("You must make a selection for Auto or Health Science or Nature or Other or all.", "Required.");
+                MessageBox.Show("You must make a selection for Driver's Licence or Health Care or Vehicle Registration or Other or all.", "Required.");
                 return;
             }
 
@@ -157,12 +157,12 @@ namespace UserManagement.UI.ViewModels
 
             if (this.IsCheckedButtonA)
             {
-                reqEntity.Button1 = "Auto";
+                reqEntity.Button1 = "Drivers Licence";
             }
 
             if (this.IsCheckedButtonB)
             {
-                reqEntity.Button2 = "Health Science";
+                reqEntity.Button2 = "Health Care";
             }
 
             if (this.IsCheckedButtonD)
@@ -172,7 +172,7 @@ namespace UserManagement.UI.ViewModels
 
             if (this.IsCheckedButtonC)
             {
-                reqEntity.Button4 = "Nature";
+                reqEntity.Button4 = "Vehicle Registration";
             }
 
             reqEntity.ServiceUsedStatus = this.ServiceUsedStatusYes ? "Yes" : "No";
