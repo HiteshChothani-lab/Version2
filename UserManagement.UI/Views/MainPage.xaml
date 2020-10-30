@@ -245,7 +245,15 @@
 
                                     <Border BorderBrush="#00167E"
                                             BorderThickness="1">
-                                        <Grid Margin="2,0,2,2">
+                                        <Grid Margin="2,1,2,2">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Width="15" Margin="0"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Source="{Binding Column1IncompleteStatusImage}" Stretch="Uniform" />
+                                                <Label Foreground="Red" Content="{Binding Column1IncompleteStatusText}" Padding="3,0,0,0" FontWeight="Bold" FontSize="15"></Label>
+                                            </StackPanel>
+                                            
                                             <Grid Margin="0,3,0,0"
                                                   VerticalAlignment="Center">
                                                 <Image Width="40"
@@ -524,13 +532,13 @@
                                     <Border BorderBrush="#00167E"
                                             BorderThickness="1">
                                         <Grid Margin="1">
-                                            <Grid>
-                                                <TextBlock 
-                                                    Text="{Binding Column1TextDisplayOnTop, Mode=OneWay}"
-                                                    FontSize="12"
-                                                    FontWeight="Bold"
-                                                    Foreground="#00167E"/>
-                                            </Grid>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Width="15" Margin="0"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Source="{Binding Column1IncompleteStatusImage}" Stretch="Uniform" />
+                                                <Label Foreground="Red" Content="{Binding Column1IncompleteStatusText}" Padding="3,0,0,0" FontWeight="Bold" FontSize="15"></Label>
+                                            </StackPanel>
 
                                             <Grid Margin="0,2,0,2"
                                                   VerticalAlignment="Center">

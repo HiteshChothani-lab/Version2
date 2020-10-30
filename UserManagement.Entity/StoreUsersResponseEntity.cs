@@ -235,6 +235,30 @@ namespace UserManagement.Entity
             get => Column2RowColor != ColorNames.Yellow;
         }
 
+        public string Column1IncompleteStatusImage
+        {
+            get => "/UserManagement.UI;component/Assets/status_incomplete.png";
+        }
+
+        public string Column1IncompleteStatusText
+        {
+            get
+            {
+                int count = 0;
+
+                if (!string.IsNullOrWhiteSpace(Btn1))
+                    count += 1;
+                if (!string.IsNullOrWhiteSpace(Btn2))
+                    count += 1;
+                if (!string.IsNullOrWhiteSpace(Btn3))
+                    count += 1;
+                if (!string.IsNullOrWhiteSpace(Btn4))
+                    count += 1;
+
+                return count.ToString();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyRaised(string propertyname)

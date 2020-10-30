@@ -45,32 +45,37 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <ToggleButton Grid.Row="0" Margin="2,5"
+            <StackPanel Orientation="Vertical">
+                <ToggleButton Grid.Row="0" Margin="2,5"
                                       IsChecked="{Binding IsCheckedButtonA}"
                                       HorizontalContentAlignment="Stretch"
                                       Style="{StaticResource RoundToggleButtonStyle}">
-                <ToggleButton.Content>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <Image Grid.Column="1"
+                    <ToggleButton.Content>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                            <Image Grid.Column="1"
                                         MaxHeight="25"
                                         Margin="10,0"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Left"
                                         RenderOptions.BitmapScalingMode="HighQuality"
                                         Source="/UserManagement.UI;component/Assets/wheel.png" />
-                        <TextBlock VerticalAlignment="Center"
+                            <TextBlock VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
                                                Margin="15,0,0,0"
                                                FontSize="15"
                                                Text="DRIVER'S LICENCE"/>
-                    </Grid>
-                </ToggleButton.Content>
-            </ToggleButton>
+                        </Grid>
+                    </ToggleButton.Content>
+                </ToggleButton>
+                <Image Width="15" Margin="0" HorizontalAlignment="Center" 
+                       Visibility="{Binding IsCheckedButtonA, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                       RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"
+                       Source="/UserManagement.UI;component/Assets/status_incomplete.png" Stretch="Uniform" />
+            </StackPanel>
 
-            <ToggleButton Grid.Row="0" Grid.Column="1"  Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonB}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+                <ToggleButton  Margin="5,5" IsChecked="{Binding IsCheckedButtonB}"
+                               HorizontalContentAlignment="Stretch" Style="{StaticResource RoundToggleButtonStyle}">
                 <ToggleButton.Content>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
                         <Image Grid.Column="1"
@@ -89,10 +94,14 @@
                 </ToggleButton.Content>
             </ToggleButton>
 
-            <ToggleButton Grid.Row="0" Grid.Column="2"  Margin="2,5"
-                                      IsChecked="{Binding IsCheckedButtonC}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+                <Image Width="15" Margin="0" HorizontalAlignment="Center" 
+                       Visibility="{Binding IsCheckedButtonB, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                       RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"
+                       Source="/UserManagement.UI;component/Assets/status_incomplete.png" Stretch="Uniform" />
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+                <ToggleButton Margin="2,5" IsChecked="{Binding IsCheckedButtonC}" 
+                              HorizontalContentAlignment="Stretch" Style="{StaticResource RoundToggleButtonStyle}">
                 <ToggleButton.Content>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
                         <Image Grid.Column="1"
@@ -111,10 +120,15 @@
                 </ToggleButton.Content>
             </ToggleButton>
 
-            <ToggleButton Grid.Row="1" Grid.Column="1"  Margin="5,5"
-                                      IsChecked="{Binding IsCheckedButtonD}"
-                                      HorizontalContentAlignment="Stretch"
-                                      Style="{StaticResource RoundToggleButtonStyle}">
+                <Image Width="15" Margin="0" HorizontalAlignment="Center" 
+                       Visibility="{Binding IsCheckedButtonC, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                       RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"
+                       Source="/UserManagement.UI;component/Assets/status_incomplete.png" Stretch="Uniform" />
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1">
+                <ToggleButton Margin="5,5" IsChecked="{Binding IsCheckedButtonD}" 
+                              HorizontalContentAlignment="Stretch" Style="{StaticResource RoundToggleButtonStyle}">
                 <ToggleButton.Content>
                     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
                         <Image Grid.Column="1"
@@ -132,8 +146,13 @@
                 </ToggleButton.Content>
             </ToggleButton>
 
-            <Grid Grid.Row="2"
-                          Grid.Column="0" Grid.ColumnSpan="4" Margin="10">
+                <Image Width="15" Margin="0" HorizontalAlignment="Center" 
+                       Visibility="{Binding IsCheckedButtonD, Converter={StaticResource VisibilityConverter}, FallbackValue=Collapsed}"
+                       RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top"
+                       Source="/UserManagement.UI;component/Assets/status_incomplete.png" Stretch="Uniform" />
+            </StackPanel>
+            
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" Margin="10" Visibility="Collapsed">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -214,9 +233,7 @@
 
             </Grid>
 
-            <Grid Grid.Row="3"
-                          Grid.Column="0" Grid.ColumnSpan="4"
-                Margin="20,10">
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="20,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
